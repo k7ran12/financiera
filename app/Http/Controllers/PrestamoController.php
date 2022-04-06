@@ -45,7 +45,12 @@ class PrestamoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Prestamo::$rules1);
-        //request()->validate(Cliente::$rules);        
+        //request()->validate(Cliente::$rules);
+        
+        $request['fecha_registro'] = date("Y-m-d H:i:s");
+        $request['users_id'] = auth()->id();
+        $request['estado_prestamo'] = 1;
+
         
         $prestamo = Prestamo::create($request->all());
         $clinte = Cliente::create($request->all());
