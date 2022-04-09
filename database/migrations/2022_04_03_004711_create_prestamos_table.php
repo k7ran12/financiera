@@ -25,12 +25,10 @@ return new class extends Migration
             $table->float("monto_x_cuota", 8,2);
             $table->float("total_interes", 8, 2);
             $table->float("monto_total", 8 ,2);
-            $table->text("clausula");
+            $table->text("clausula")->nullable();
             $table->boolean("estado_prestamo");
             $table->integer("numero_operacion");
-            $table->timestamps();
-            //$table->integer("cliente_id");
-            //$table->integer("usuario_id");
+            $table->timestamps();            
             $table->foreignId('clientes_id')->constrained();
             $table->foreignId('users_id')->constrained();            
         });

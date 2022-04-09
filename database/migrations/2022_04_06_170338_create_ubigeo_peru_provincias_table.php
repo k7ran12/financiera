@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('numeraciones', function (Blueprint $table) {
+        Schema::create('ubigeo_peru_provincias', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->char("codigo", 4);            
-            $table->timestamps();
+            $table->string('nombre', 45);
+            $table->foreignId('ubigeo_peru_departamentos_id')->constrained();           
         });
-        
-        DB::statement('ALTER TABLE numeraciones ADD correlacion INT(6) UNSIGNED ZEROFILL NOT NULL');
-
     }
 
     /**
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('numeraciones');
+        Schema::dropIfExists('ubigeo_peru_provincias');
     }
 };

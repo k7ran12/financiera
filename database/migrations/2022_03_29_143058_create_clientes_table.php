@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre');
             $table->string('Apellido');
-            $table->char("NumDoc", 15);
+            $table->char("NumDoc", 15)->unique();
             $table->string("Region");
             $table->string("Provincia");
             $table->string("Distrito");

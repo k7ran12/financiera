@@ -11313,6 +11313,12 @@ legend.scheduler-border {
   font-size: 14px;
 }
 
+.styleinput {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.01);
+  width: 30px;
+}
+
 @media only screen and (max-width: 575px) {
   .texto_grande {
     font-size: 1.2em;

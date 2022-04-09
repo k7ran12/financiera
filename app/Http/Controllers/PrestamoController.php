@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PrestamoController
@@ -17,9 +18,10 @@ class PrestamoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //private $cliente;
     public function index()
     {
-        $prestamos = Prestamo::paginate();
+        $prestamos = Prestamo::paginate();        
 
         return view('prestamo.index', compact('prestamos'))
             ->with('i', (request()->input('page', 1) - 1) * $prestamos->perPage());
@@ -33,7 +35,8 @@ class PrestamoController extends Controller
     public function create()
     {
         $prestamo = new Prestamo();
-        return view('prestamo.create', compact('prestamo'));
+        $hoy = date('Y-m-d');
+        return view('prestamo.create', compact('prestamo','hoy'));
     }
 
     /**
@@ -44,16 +47,19 @@ class PrestamoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Prestamo::$rules1);
-        //request()->validate(Cliente::$rules);
+        
+        $request['tipo_moneda'] = "PEN";
+        $request['monto_x_cuota'] = 0;
+        $request['numero_operacion'] = 1;
         
         $request['fecha_registro'] = date("Y-m-d H:i:s");
         $request['users_id'] = auth()->id();
         $request['estado_prestamo'] = 1;
 
+        //request()->validate(Prestamo::$rules);
+                 
+        $prestamos = Prestamo::create($request->all());
         
-        $prestamo = Prestamo::create($request->all());
-        $clinte = Cliente::create($request->all());
                 
 
         return redirect()->route('prestamos.index')
@@ -114,5 +120,13 @@ class PrestamoController extends Controller
 
         return redirect()->route('prestamos.index')
             ->with('success', 'Prestamo deleted successfully');
+    }
+
+    public function search(Request $documento)
+    {
+        $hoy = date('Y-m-d');
+        $documento = $documento->dni;
+        $clientes = Cliente::where('NumDoc', $documento)->get();
+        return $clientes;
     }
 }

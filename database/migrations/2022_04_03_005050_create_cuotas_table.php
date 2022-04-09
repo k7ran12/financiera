@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cuotas', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->dateTimeTz('fecha_limite', $precision = 0);
             $table->float("monto",8,2);

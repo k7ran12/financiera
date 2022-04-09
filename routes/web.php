@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrestamoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,15 @@ Auth::routes();
 
 Route::resource('clientes', App\Http\Controllers\ClienteController::class);
 
+Route::get('/prestamos/search', [PrestamoController::class, 'search'])->name('prestamos.search');
+
+
 Route::resource('prestamos', App\Http\Controllers\PrestamoController::class);
+//Route::get('prestamos/search', [PrestamoController::class, 'search'])->name('prestamos.search');
+
+//Route::get('prestamos/index', [PrestamoController::class, 'index'])->name('prestamos.index');
+
+Route::resource('cuotas', App\Http\Controllers\CuotaController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
