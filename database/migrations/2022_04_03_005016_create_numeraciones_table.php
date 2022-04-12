@@ -17,8 +17,7 @@ return new class extends Migration
         Schema::create('numeraciones', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->char("codigo", 4);            
-            $table->timestamps();
+            $table->char("codigo", 4);
         });
         
         DB::statement('ALTER TABLE numeraciones ADD correlacion INT(6) UNSIGNED ZEROFILL NOT NULL');

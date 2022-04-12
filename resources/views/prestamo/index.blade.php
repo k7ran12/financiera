@@ -36,9 +36,9 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Monto</th>
-										<th>Interes</th>
-										<th>Num Cuota</th>
+										<th>Capital</th>
+										<th>TEA</th>
+										<th>Numero Cuotas</th>
 										<th>Tipo Moneda</th>
 										<th>Fecha Registro</th>
 										<th>Fecha Inicio</th>
@@ -59,17 +59,17 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $prestamo->monto }}</td>
-											<td>{{ $prestamo->interes }}</td>
+											<td>{{ "S/.". number_format($prestamo->capital, 2, '.', ''); }}</td>
+											<td>{{ $prestamo->tea }}&nbsp;%</td>
 											<td>{{ $prestamo->num_cuota }}</td>
 											<td>{{ $prestamo->tipo_moneda }}</td>
 											<td>{{ $prestamo->fecha_registro }}</td>
 											<td>{{ $prestamo->fecha_inicio }}</td>
 											<td>{{ $prestamo->monto_x_cuota }}</td>
-											<td>{{ $prestamo->total_interes }}</td>
-											<td>{{ $prestamo->monto_total }}</td>
+											<td>{{ "S/.".number_format($prestamo->total_interes, 2, '.', ''); }}</td>
+                                            <td>{{ "S/.".number_format($prestamo->capital_total, 2, '.', ''); }}</td>											
 											<td>{{ $prestamo->clausula }}</td>
-											<td>{{ $prestamo->estado_prestamo }}</td>
+											<td>{{ $prestamo->estado_prestamo == 0? 'Pagado' : 'Pendiente' }}</td>
 											<td>{{ $prestamo->numero_operacion }}</td>
 											<td>{{ $prestamo->clientes_id }}</td>
 											<td>{{ $prestamo->users_id }}</td>

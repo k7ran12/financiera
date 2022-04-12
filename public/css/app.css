@@ -11319,6 +11319,12 @@ legend.scheduler-border {
   width: 30px;
 }
 
+.styledate {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.01);
+  width: 90px;
+}
+
 @media only screen and (max-width: 575px) {
   .texto_grande {
     font-size: 1.2em;

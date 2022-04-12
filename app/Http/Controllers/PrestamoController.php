@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Cuota;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,12 +54,35 @@ class PrestamoController extends Controller
         $request['numero_operacion'] = 1;
         
         $request['fecha_registro'] = date("Y-m-d H:i:s");
+        //$request['fecha_inicio'] = $request
         $request['users_id'] = auth()->id();
         $request['estado_prestamo'] = 1;
-
-        //request()->validate(Prestamo::$rules);
-                 
+        
+        
         $prestamos = Prestamo::create($request->all());
+
+        $id = Prestamo::latest()->first()->id;
+
+
+        for ($i=0; $i < count($request['numero']); $i++) { 
+            Cuota::create([
+                'fecha_limite' => $request['fecha_limite'][$i],
+                'monto' => $request['monto'][$i],
+                'numero' => $request['numero'][$i],
+                'estado' => 1,
+                'interes' => $request['interes'][$i],
+                'total' => $request['total'][$i],
+                'prestamos_id' => $id,
+            ]);
+        }
+
+        
+        
+        
+
+        
+        
+        
         
                 
 
@@ -128,5 +152,17 @@ class PrestamoController extends Controller
         $documento = $documento->dni;
         $clientes = Cliente::where('NumDoc', $documento)->get();
         return $clientes;
+    }
+
+    public function cuotasCliente(Request $request)
+    {
+        //var_dump($request);
+
+        
+        $idCliente = $request['clientes_id'];
+
+        $prestamos = Prestamo::where('clientes_id', $idCliente)->get();
+
+        return $prestamos;
     }
 }

@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('tipodocumentos', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('nombredocumento');
-            $table->timestamps();
+            $table->string('nombredocumento');            
         });
     }
 

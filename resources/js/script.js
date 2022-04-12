@@ -1,7 +1,10 @@
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
+
+
 $( "#buscar_cliente" ).click(function() {
+    $(".remove").remove();
     var datos = $("#form_buscar_cliente").serialize();
     var datos_busqueda = $("#div_busqueda");
     $.ajax({
@@ -14,8 +17,8 @@ $( "#buscar_cliente" ).click(function() {
             {
                 clientes.forEach(function(elemento) {
                     console.log(elemento);                
-                    datos_busqueda.append('<div class="mb-3 row remove"><label class="col-sm-3 col-form-label">Nombre</label><div class="col-sm-9"><input type="text" class="form-control" id="clientes_id" name="clientes_id" value="'+elemento['id']+'" readonly></div></div>');
-                    datos_busqueda.append('<div class="mb-3 row remove"><label class="col-sm-3 col-form-label">Nombre</label><div class="col-sm-9"><input type="text" class="form-control" id="nombre" name="nombre" value="'+elemento['Nombre']+'" readonly></div></div>');
+                    datos_busqueda.append('<input type="hidden" class="form-control remove" id="clientes_id" name="clientes_id" value="'+elemento['id']+'" readonly>');
+                    datos_busqueda.append('<div style="padding-bottom:15px" class="row remove"><div class="col-md-3"><label>Nombre</label></div><div class="col-md-5"><input type="text" class="form-control" id="nombre" name="nombre" value="'+elemento['Nombre']+'" readonly></div><div class="col-md-2"><button type="button" id="btn_editar_cliente" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></div><div class="col-md-2"><button onclick="myFunction()" type="button" class="btn btn-primary"><i class="fa-solid fa-bars"></i></button></div></div>');
                     datos_busqueda.append('<div class="mb-3 row remove"><label class="col-sm-3 col-form-label">Apellido</label><div class="col-sm-9"><input type="text" class="form-control" id="" value="'+elemento['Apellido']+'" readonly></div></div>');
                     datos_busqueda.append('<div class="mb-3 row remove"><label class="col-sm-3 col-form-label">Documento</label><div class="col-sm-9"><input type="text" class="form-control" id="" value="'+elemento['NumDoc']+'" readonly></div></div>');
                     datos_busqueda.append('<div class="mb-3 row remove"><label class="col-sm-3 col-form-label">Region</label><div class="col-sm-9"><input type="text" class="form-control" id="" value="'+elemento['Region']+'" readonly></div></div>');
@@ -40,6 +43,21 @@ $( "#buscar_cliente" ).click(function() {
     
   });
 
+window.myFunction = function(){
+    var clientes_id = $("#clientes_id").val();    
+    $.ajax({
+        method: "GET",
+        url: "cuotasCliente",
+        data: { clientes_id: clientes_id }
+      })
+        .done(function( prestamosXCliente ) {
+          //alert( "Data Saved: " + msg );
+          prestamosXCliente.forEach(function(elemento) {
+            console.log(elemento); 
+          });
+        });
+}
+
 window.Menu = function (code) {
     switch (code) {
         case 1:          
@@ -49,7 +67,7 @@ window.Menu = function (code) {
             window.location.href = "clientes";
             break;        
         case 3:
-            window.location.href = "clientes";
+            window.location.href = "prestamos/";
             break;
         case 4:
             window.location.href = "clientes";
@@ -69,7 +87,7 @@ window.Menu = function (code) {
 let btnCronograma = document.getElementById("cronograma");
 
 btnCronograma.onclick = function(event) { 
-    let monto = document.getElementById("monto").value;
+    let monto = document.getElementById("capital").value;
     let num_cuotas = document.getElementById("num_cuotas").value;
     let tea = document.getElementById("tea_select").value;
     let form_pago_select = document.getElementById("form_pago_select").value;
@@ -101,13 +119,13 @@ btnCronograma.onclick = function(event) {
 
             fecha_inicial = sumarDias(fecha_inicial, form_pago_select);
             
-            table += '<tr><td scope="col"><input class="styleinput" readonly type="text" value="'+(index + 1)+'"></td><td scope="col">'+fecha_inicial+'</td><td scope="col">'+cuota_pagar_sin_interes.toFixed(2)+'</td><td scope="col">'+interes.toFixed(2)+'</td><td scope="col">'+cuota_pagar_total.toFixed(2)+'</td></tr>';
+            table += '<tr><td scope="col"><input class="styleinput" readonly type="text" name="numero[]" value="'+(index + 1)+'"></td><td scope="col"><input class="styledate" readonly type="text" name="fecha_limite[]" value="'+fecha_inicial+'"></td><td scope="col"><input class="styledate" readonly type="text" name="monto[]" value="'+cuota_pagar_sin_interes.toFixed(2)+'"></td><td scope="col"><input class="styledate" readonly type="text" name="interes[]" value="'+interes.toFixed(2)+'"></td><td scope="col"><input class="styledate" readonly type="text" name="total[]" value="'+cuota_pagar_total.toFixed(2)+'"></td></tr>';
             
         }
         table += '<tr><td colspan="3"></td><td>Total</td><td>'+total_pago.toFixed(2)+'</td></tr>';
         table += '</tbody></table>';
         table += '<input type="hidden" value="'+total_interes+'" name="total_interes">'
-        table += '<input type="hidden" value="'+total_pago+'" name="monto_total">'
+        table += '<input type="hidden" value="'+total_pago+'" name="capital_total">'
         table += '<button type="submit" class="btn btn-primary">Enviar</button>';
  
         div_table.innerHTML = table;
@@ -156,4 +174,9 @@ btnCronograma.onclick = function(event) {
     }
      
 };
+
+
+
+
+
 

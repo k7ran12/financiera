@@ -29,6 +29,8 @@ class Cuota extends Model
 		'numero' => 'required',
 		'estado' => 'required',
 		'prestamos_id' => 'required',
+    'interes' => 'required',
+    'total' => 'required',
     ];
 
     protected $perPage = 20;
@@ -38,7 +40,7 @@ class Cuota extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha_limite','monto','numero','estado','prestamos_id'];
+    protected $fillable = ['fecha_limite','monto','numero','estado','prestamos_id','interes','total'];
 
 
     /**

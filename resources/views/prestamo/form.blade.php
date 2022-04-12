@@ -41,7 +41,7 @@
                                 <div class="mb-3 row">
                                     <label for="" class="col-sm-3 col-form-label">Monto</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="monto" class="form-control" id="monto">
+                                        <input type="text" name="capital" class="form-control" id="capital">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -51,7 +51,7 @@
                                     </div>
                                     <label class="col-sm-2 col-form-label">TEA</label>
                                     <div class="col-sm-4">
-                                        <select name="interes" id="tea_select" class="form-select" aria-label="Default select example">
+                                        <select name="tea" id="tea_select" class="form-select" aria-label="Default select example">
                                             <option selected value="8">8</option>
                                             <option value="9">9</option>
                                             <option value="10">10</option>
@@ -98,14 +98,7 @@
 
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 p-1">
-                        <div class="card">
-                            <div class="card-body">
-
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>

@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('cuotas', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->dateTimeTz('fecha_limite', $precision = 0);
+            $table->date('fecha_limite');
             $table->float("monto",8,2);
             $table->integer("numero");
-            $table->boolean("estado");            
+            $table->boolean("estado");
+            $table->float("interes",8,2);
+            $table->float("total",8,2);
             $table->timestamps();    
             $table->foreignId('prestamos_id')->constrained();                    
         });

@@ -52,15 +52,15 @@ class Prestamo extends Model
     ];
 
     static $rules1 = [
-        'monto' => 'required',
-		'interes' => 'required',
+        'capital' => 'required',
+		'tea' => 'required',
 		'num_cuota' => 'required',
 		'tipo_moneda' => 'required',
 		'fecha_registro' => 'required',
 		'fecha_inicio' => 'required',
 		'monto_x_cuota' => 'required',
 		'total_interes' => 'required',
-		'monto_total' => 'required',
+		'capital_total' => 'required',
 		'clausula' => 'nullable|clausula',
 		'estado_prestamo' => 'required',
 		'numero_operacion' => 'required',		
@@ -83,7 +83,7 @@ class Prestamo extends Model
      *
      * @var array
      */
-    protected $fillable = ['monto','interes','num_cuota','tipo_moneda','fecha_registro','fecha_inicio','monto_x_cuota','total_interes','monto_total','clausula','estado_prestamo','numero_operacion','clientes_id','users_id'];
+    protected $fillable = ['capital','tea','num_cuota','tipo_moneda','fecha_registro','fecha_inicio','monto_x_cuota','total_interes','capital_total','clausula','estado_prestamo','numero_operacion','clientes_id','users_id'];
 
 
     /**

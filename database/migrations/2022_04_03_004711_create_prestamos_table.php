@@ -16,18 +16,18 @@ return new class extends Migration
         Schema::create('prestamos', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->float("monto", 8,2);
-            $table->float("interes", 8,2);
+            $table->float("capital", 8,2);
+            $table->float("tea", 8,2);
             $table->integer("num_cuota");
             $table->char("tipo_moneda", 3);
             $table->dateTimeTz('fecha_registro', $precision = 0);
-            $table->dateTimeTz("fecha_inicio", $precision = 0);
+            $table->date("fecha_inicio", $precision = 0);
             $table->float("monto_x_cuota", 8,2);
             $table->float("total_interes", 8, 2);
-            $table->float("monto_total", 8 ,2);
+            $table->float("capital_total", 8 ,2);
             $table->text("clausula")->nullable();
             $table->boolean("estado_prestamo");
-            $table->integer("numero_operacion");
+            $table->string("numero_operacion");
             $table->timestamps();            
             $table->foreignId('clientes_id')->constrained();
             $table->foreignId('users_id')->constrained();            

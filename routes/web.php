@@ -20,18 +20,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('clientes', App\Http\Controllers\ClienteController::class);
+Route::resource('clientes', App\Http\Controllers\ClienteController::class)->middleware('auth');
 
-Route::get('/prestamos/search', [PrestamoController::class, 'search'])->name('prestamos.search');
+Route::get('/prestamos/search', [PrestamoController::class, 'search'])->name('prestamos.search')->middleware('auth');
+
+Route::get('/prestamos/cuotasCliente', [PrestamoController::class, 'cuotasCliente'])->name('cuotas.cuotasCliente')->middleware('auth');
 
 
-Route::resource('prestamos', App\Http\Controllers\PrestamoController::class);
+Route::resource('prestamos', App\Http\Controllers\PrestamoController::class)->middleware('auth');
 //Route::get('prestamos/search', [PrestamoController::class, 'search'])->name('prestamos.search');
 
 //Route::get('prestamos/index', [PrestamoController::class, 'index'])->name('prestamos.index');
 
-Route::resource('cuotas', App\Http\Controllers\CuotaController::class);
+Route::resource('cuotas', App\Http\Controllers\CuotaController::class)->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
