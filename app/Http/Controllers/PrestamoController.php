@@ -79,16 +79,6 @@ class PrestamoController extends Controller
             ]);
         }
 
-        
-        
-        
-
-        
-        
-        
-        
-                
-
         return redirect()->route('prestamos.index')
             ->with('success', 'Prestamo created successfully.');
     }
@@ -129,10 +119,37 @@ class PrestamoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Prestamo $prestamo)
-    {
+    {        
+        $request['tipo_moneda'] = "PEN";
+        $request['monto_x_cuota'] = 0;
+        $request['numero_operacion'] = 1;
+        
+        $request['fecha_registro'] = date("Y-m-d H:i:s");
+        //$request['fecha_inicio'] = $request
+        $request['users_id'] = auth()->id();
+        $request['estado_prestamo'] = 1;
+        $request['saldo'] = $request['capital_total'];
+
         request()->validate(Prestamo::$rules);
+        
+        Cuota::where('prestamos_id', $prestamo->id)->delete();
 
         $prestamo->update($request->all());
+
+        $id = Prestamo::latest()->first()->id;
+
+
+        for ($i=0; $i < count($request['numero']); $i++) { 
+            Cuota::create([
+                'fecha_limite' => $request['fecha_limite'][$i],
+                'monto' => $request['monto'][$i],
+                'numero' => $request['numero'][$i],
+                'estado' => 1,
+                'interes' => $request['interes'][$i],
+                'total' => $request['total'][$i],
+                'prestamos_id' => $id,
+            ]);
+        }
 
         return redirect()->route('prestamos.index')
             ->with('success', 'Prestamo updated successfully');
