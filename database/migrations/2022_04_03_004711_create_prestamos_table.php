@@ -28,9 +28,12 @@ return new class extends Migration
             $table->text("clausula")->nullable();
             $table->boolean("estado_prestamo");
             $table->string("numero_operacion");
-            $table->timestamps();            
-            $table->foreignId('clientes_id')->constrained();
-            $table->foreignId('users_id')->constrained();            
+            $table->string("form_pago", 20);
+            $table->float("saldo", 8,2);   
+            $table->char('clientes_id');        
+            $table->foreign('clientes_id')->references('NumDoc')->on('clientes')->onDelete('cascade');
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

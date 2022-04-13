@@ -57,6 +57,9 @@ class PrestamoController extends Controller
         //$request['fecha_inicio'] = $request
         $request['users_id'] = auth()->id();
         $request['estado_prestamo'] = 1;
+        $request['saldo'] = $request['capital_total'];
+
+        request()->validate(Prestamo::$rules);
         
         
         $prestamos = Prestamo::create($request->all());
@@ -111,9 +114,11 @@ class PrestamoController extends Controller
      */
     public function edit($id)
     {
-        $prestamo = Prestamo::find($id);
+        $hoy = date('Y-m-d');
+        $prestamo = Prestamo::find($id);        
+        $cuotas = Cuota::where('prestamos_id', $id)->get();
 
-        return view('prestamo.edit', compact('prestamo'));
+        return view('prestamo.edit', compact('prestamo', 'hoy', 'cuotas'));
     }
 
     /**
@@ -149,16 +154,13 @@ class PrestamoController extends Controller
     public function search(Request $documento)
     {
         $hoy = date('Y-m-d');
-        $documento = $documento->dni;
+        $documento = $documento->clientes_id;
         $clientes = Cliente::where('NumDoc', $documento)->get();
         return $clientes;
     }
 
     public function cuotasCliente(Request $request)
-    {
-        //var_dump($request);
-
-        
+    {        
         $idCliente = $request['clientes_id'];
 
         $prestamos = Prestamo::where('clientes_id', $idCliente)->get();

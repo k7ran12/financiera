@@ -35,24 +35,7 @@ class Prestamo extends Model
 {
     
     static $rules = [
-		'monto' => 'required',
-		'interes' => 'required',
-		'num_cuota' => 'required',
-		'tipo_moneda' => 'required',
-		'fecha_registro' => 'required',
-		'fecha_inicio' => 'required',
-		'monto_x_cuota' => 'required',
-		'total_interes' => 'required',
-		'monto_total' => 'required',
-		'clausula' => 'required',
-		'estado_prestamo' => 'required',
-		'numero_operacion' => 'required',
-		'clientes_id' => 'required',
-		'users_id' => 'required',
-    ];
-
-    static $rules1 = [
-        'capital' => 'required',
+		'capital' => 'required',
 		'tea' => 'required',
 		'num_cuota' => 'required',
 		'tipo_moneda' => 'required',
@@ -60,21 +43,14 @@ class Prestamo extends Model
 		'fecha_inicio' => 'required',
 		'monto_x_cuota' => 'required',
 		'total_interes' => 'required',
-		'capital_total' => 'required',
-		'clausula' => 'nullable|clausula',
+		'capital_total' => 'required',		
 		'estado_prestamo' => 'required',
-		'numero_operacion' => 'required',		
-        'Nombre' => 'required',
-		'Apellido' => 'required',
-		'NumDoc' => 'required|unique:App\Models\Cliente,NumDoc',
-		'Region' => 'required',
-		'Provincia' => 'required',
-		'Distrito' => 'required',
-		'Direccion' => 'required',
-		'NumTelefono' => 'required',
-		'CorreoElec' => 'required',
-		'tipodocumentos_id' => 'required',
-    ];
+		'numero_operacion' => 'required',
+		'clientes_id' => 'required',
+		'users_id' => 'required',
+        'form_pago' => 'required',
+        'saldo' => 'required'
+    ];    
 
     protected $perPage = 20;
 
@@ -83,7 +59,7 @@ class Prestamo extends Model
      *
      * @var array
      */
-    protected $fillable = ['capital','tea','num_cuota','tipo_moneda','fecha_registro','fecha_inicio','monto_x_cuota','total_interes','capital_total','clausula','estado_prestamo','numero_operacion','clientes_id','users_id'];
+    protected $fillable = ['capital','tea','num_cuota','tipo_moneda','saldo','fecha_registro','fecha_inicio','monto_x_cuota','form_pago','total_interes','capital_total','clausula','estado_prestamo','numero_operacion','clientes_id','users_id'];
 
 
     /**

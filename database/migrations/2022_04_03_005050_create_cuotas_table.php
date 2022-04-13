@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float("interes",8,2);
             $table->float("total",8,2);
             $table->timestamps();    
-            $table->foreignId('prestamos_id')->constrained();                    
+            $table->foreignId('prestamos_id')->constrained()->onDelete('cascade');                    
         });
     }
 
