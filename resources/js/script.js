@@ -247,7 +247,7 @@ $(document).ready(function(){
     
             interes = parseFloat(cuota_pagar_total) - parseFloat(cuota_pagar_sin_interes);
     
-            table = '<table class="table table-striped"><thead><tr><th scope="col">N</th><th scope="col">Fecha Vencimiento</th><th scope="col">Monto</th><th scope="col">Interes</th><th scope="col">Total</th></tr></thead><tbody>';
+            table = '<div class="table-responsive"><table class="table table-striped"><thead><tr><th scope="col">N</th><th scope="col">Fecha Vencimiento</th><th scope="col">Monto</th><th scope="col">Interes</th><th scope="col">Total</th></tr></thead><tbody>';
     
             
     
@@ -259,7 +259,7 @@ $(document).ready(function(){
                 
             }
             table += '<tr><td colspan="3"></td><td>Total</td><td>'+total_pago.toFixed(2)+'</td></tr>';
-            table += '</tbody></table>';
+            table += '</tbody></table></div>';
             table += '<input type="hidden" value="'+total_interes+'" name="total_interes">'
             table += '<input type="hidden" value="'+total_pago+'" name="capital_total">'
             table += '<button type="submit" class="btn btn-primary">Enviar</button>';            

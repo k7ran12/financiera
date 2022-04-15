@@ -35,8 +35,8 @@
                             <div class="col-md-5">
                                 <form class="row g-3" name="formBuscarXNumOperacion" id="formBuscarXNumOperacion">
                                     <div class="mb-3 row">
-                                        <label for="buscar" class="col-sm-2 col-form-label">Buscar</label>
-                                        <div class="col-sm-6">
+                                        <label for="buscar" class="col-sm-3 col-form-label">Buscar</label>
+                                        <div class="col-sm-5">
                                           <input type="text" class="form-control" id="buscarOperacion" name="buscarOperacion">
                                         </div>
                                         <div class="col-sm-4">
@@ -48,23 +48,17 @@
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
-                                        <thead class="thead">
+                                        <thead class="table-dark">
                                             <tr>
                                                 <th>N°</th>                                                
-                                                <th>Capital</th>
+                                                <th>Monto</th>
                                                 <th>TEA</th>
-                                                <th>Numero Cuotas</th>
-                                                <th>Tipo Moneda</th>
-                                                <th>Fecha Registro</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Monto X Cuota</th>
-                                                <th>Total Interes</th>
-                                                <th>Monto Total</th>
-                                                <th>Clausula</th>
+                                                <th>Numero Cuotas</th>                                                
+                                                <th>Fecha Registro</th>                                                                           
                                                 <th>Estado Prestamo</th>
                                                 <th>Numero Operacion</th>
-                                                <th>Clientes Id</th>
-                                                <th>Users Id</th>        
+                                                <td></td>                                                       
+                                                <td></td>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -75,28 +69,17 @@
                                                     
                                                     <td>{{ "S/.". number_format($prestamo->capital, 2, '.', ''); }}</td>
                                                     <td>{{ $prestamo->tea }}&nbsp;%</td>
-                                                    <td>{{ $prestamo->num_cuota }}</td>
-                                                    <td>{{ $prestamo->tipo_moneda }}</td>
-                                                    <td>{{ $prestamo->fecha_registro }}</td>
-                                                    <td>{{ $prestamo->fecha_inicio }}</td>
-                                                    <td>{{ $prestamo->monto_x_cuota }}</td>
-                                                    <td>{{ "S/.".number_format($prestamo->total_interes, 2, '.', ''); }}</td>
-                                                    <td>{{ "S/.".number_format($prestamo->capital_total, 2, '.', ''); }}</td>											
-                                                    <td>{{ $prestamo->clausula }}</td>
-                                                    <td>{{ $prestamo->estado_prestamo }}</td>
+                                                    <td>{{ $prestamo->num_cuota }}</td>                                                    
+                                                    <td>{{ $prestamo->fecha_registro }}</td>                                                                                                       
+                                                    <td>{{ ucwords($prestamo->estado_prestamo) }}</td>
                                                     <td>{{ $prestamo->numero_operacion }}</td>
-                                                    <td>{{ $prestamo->clientes_id }}</td>
-                                                    <td>{{ $prestamo->users_id }}</td>
-        
-                                                    <td>
-                                                        <form action="{{ route('prestamos.destroy',$prestamo->id) }}" method="POST">
-                                                            <a class="btn btn-sm btn-primary " href="{{ route('prestamos.show',$prestamo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                            <a class="btn btn-sm btn-success" href="{{ route('prestamos.edit',$prestamo->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                        </form>
-                                                    </td>
+                                                    <form action="{{ route('prestamos.destroy',$prestamo->id) }}" method="POST"></form>
+                                                    <td><a class="btn btn-sm btn-primary " href="{{ route('prestamos.show',$prestamo->id) }}"><i class="fa fa-fw fa-eye"></i></a></td>
+                                                    <td><a class="btn btn-sm btn-success" href="{{ route('prestamos.edit',$prestamo->id) }}"><i class="fa fa-fw fa-edit"></i></a></td>        
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <td><button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button></td>
+                                                    </form>
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -27,7 +27,8 @@
                   Datos Prestamo
                 </div>
                 <div class="card-body">
-                  <table class="table">
+                  <div class="table-responsive">
+                    <table class="table">
                     <tbody>
                       <tr>
                         <th>Monto</th>
@@ -67,6 +68,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div><br>
               <div class="col-md-12">
@@ -75,40 +77,42 @@
                     Datos Cliente
                   </div>
                   <div class="card-body">
-                    <table class="table">
-                      <tbody>
-                        @foreach ($prestamo['cliente'] as $cliente)
-                        <tr>
-                          <th>Nombre</th>
-                          <td> {{$cliente->Nombre}}</td>
-                          <th>Apellido</th>
-                          <td>{{$cliente->Apellido}}</td>
-                        </tr>
-                        <tr>
-                          <th>N° Documento</th>
-                          <td> {{$cliente->NumDoc}}</td>
-                          <th>Region</th>
-                          <td>{{$cliente->Region}}</td>
-                        </tr>
-                        <tr>
-                          <th>Provincia</th>
-                          <td> {{$cliente->Provincia}}</td>
-                          <th>Distrito</th>
-                          <td>{{$cliente->Distrito}}</td>
-                        </tr>
-                        <tr>
-                          <th>Direccion</th>
-                          <td> {{$cliente->Direccion}}</td>
-                          <th>Correo</th>
-                          <td>{{$cliente->CorreoElec}}</td>
-                        </tr>
-                        <tr>
-                          <th>Tipo documento</th>
-                          <td> {{$cliente->tipodocumentos_id}}</td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          @foreach ($prestamo['cliente'] as $cliente)
+                          <tr>
+                            <th>Nombre</th>
+                            <td> {{$cliente->Nombre}}</td>
+                            <th>Apellido</th>
+                            <td>{{$cliente->Apellido}}</td>
+                          </tr>
+                          <tr>
+                            <th>N° Documento</th>
+                            <td> {{$cliente->NumDoc}}</td>
+                            <th>Region</th>
+                            <td>{{$cliente->Region}}</td>
+                          </tr>
+                          <tr>
+                            <th>Provincia</th>
+                            <td> {{$cliente->Provincia}}</td>
+                            <th>Distrito</th>
+                            <td>{{$cliente->Distrito}}</td>
+                          </tr>
+                          <tr>
+                            <th>Direccion</th>
+                            <td> {{$cliente->Direccion}}</td>
+                            <th>Correo</th>
+                            <td>{{$cliente->CorreoElec}}</td>
+                          </tr>
+                          <tr>
+                            <th>Tipo documento</th>
+                            <td> {{$cliente->tipodocumentos_id}}</td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -119,44 +123,46 @@
                   Cuotas
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Interes</th>
-                        <th scope="col">Monto Pagar</th>
-                        <th scope="col">Fecha V.</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Accion</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                      @foreach($prestamo['cuota'] as $cuota)
-
-                      <tr>
-                        <td>{{ $cuota->numero }}</td>
-                        <td>{{ "S/.".number_format($cuota->monto, 2, '.', '') }}</td>
-                        <td>{{ "S/.".number_format($cuota->interes, 2, '.', '') }}</td>
-                        <td>{{ "S/.".number_format($cuota->total, 2, '.', '') }}</td>
-                        <td>{{ $cuota->fecha_limite }}</td>
-                        <td>                          
-                            <button class="btn {{ $cuota->estado ==  'pagado' ? 'btn-success' : 'btn-secondary'  }} ">{{ ucwords($cuota->estado) }}</button>
-                        </td>
-                        <td>
-                          @if($cuota->estado ==  'pendiente')
-                          <button onclick="modalPagar({{ $cuota }},{{$prestamo['prestamo']->num_cuota}},{{$prestamo['prestamo']->saldo}},{{$prestamo['prestamo']->totalPagoPMO}});" type="button" class="btn btn-primary"
-                            data-bs-toggle="modal" data-bs-target="#RealizarPago">
-                            <i class="fa-solid fa-dollar-sign"></i>
-                          </button>
-                          @endif
-                        </td>
-                      </tr>
-
-                      @endforeach
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Monto</th>
+                          <th scope="col">Interes</th>
+                          <th scope="col">Monto Pagar</th>
+                          <th scope="col">Fecha V.</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Accion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        @foreach($prestamo['cuota'] as $cuota)
+  
+                        <tr>
+                          <td>{{ $cuota->numero }}</td>
+                          <td>{{ "S/.".number_format($cuota->monto, 2, '.', '') }}</td>
+                          <td>{{ "S/.".number_format($cuota->interes, 2, '.', '') }}</td>
+                          <td>{{ "S/.".number_format($cuota->total, 2, '.', '') }}</td>
+                          <td>{{ $cuota->fecha_limite }}</td>
+                          <td>                          
+                              <button class="btn {{ $cuota->estado ==  'pagado' ? 'btn-success' : 'btn-secondary'  }} ">{{ ucwords($cuota->estado) }}</button>
+                          </td>
+                          <td>
+                            @if($cuota->estado ==  'pendiente')
+                            <button onclick="modalPagar({{ $cuota }},{{$prestamo['prestamo']->num_cuota}},{{$prestamo['prestamo']->saldo}},{{$prestamo['prestamo']->totalPagoPMO}});" type="button" class="btn btn-primary"
+                              data-bs-toggle="modal" data-bs-target="#RealizarPago">
+                              <i class="fa-solid fa-dollar-sign"></i>
+                            </button>
+                            @endif
+                          </td>
+                        </tr>
+  
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
