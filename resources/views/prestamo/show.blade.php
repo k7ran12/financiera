@@ -10,11 +10,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <div class="float-left">
-            <span class="card-title">Resumen Prestamo</span>
-          </div>
-          <div class="float-right">
-            <a class="btn btn-primary" href="{{ route('prestamos.index') }}"> Back</a>
+          <div class="row">
+            <div class="col-sm-6"><span class="card-title">Resumen Prestamo</span></div>
+            <div class="col-sm-4"><a class="btn btn-primary" href="{{ route('prestamos.index') }}"> Back</a></div>
+            <div class="col-sm-2"><h2 class="{{ ($prestamo['prestamo']->estado_prestamo == 'finalizado') ? 'finalizado':'pendiente'}}">{{ $prestamo['prestamo']->estado_prestamo }}</h2></div>
           </div>
         </div>
         @if ($message = Session::get('success'))
@@ -50,7 +49,7 @@
                       </tr>
                       <tr>
                         <th>Estado Prestamo</th>
-                        <td>{{ $prestamo['prestamo']->estado_prestamo }}</td>
+                        <td>{{ ucwords($prestamo['prestamo']->estado_prestamo) }}</td>
                         <th>Fecha Inicio</th>
                         <td>{{ $prestamo['prestamo']->fecha_inicio }}</td>
                       </tr>
@@ -62,7 +61,7 @@
                       </tr>
                       <tr>
                         <th>Tipo Pago</th>
-                        <td>{{ $prestamo['prestamo']->form_pago }}</td>
+                        <td>{{ ucwords($prestamo['prestamo']->form_pago) }}</td>
                         <th>Por pagar</th>
                         <td>{{ $prestamo['prestamo']->saldo }}</td>
                       </tr>
@@ -133,6 +132,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                      
                       @foreach($prestamo['cuota'] as $cuota)
 
                       <tr>
@@ -146,7 +146,7 @@
                         </td>
                         <td>
                           @if($cuota->estado ==  'pendiente')
-                          <button onclick="modalPagar({{ $cuota }});" type="button" class="btn btn-primary"
+                          <button onclick="modalPagar({{ $cuota }},{{$prestamo['prestamo']->num_cuota}},{{$prestamo['prestamo']->saldo}},{{$prestamo['prestamo']->totalPagoPMO}});" type="button" class="btn btn-primary"
                             data-bs-toggle="modal" data-bs-target="#RealizarPago">
                             <i class="fa-solid fa-dollar-sign"></i>
                           </button>
@@ -181,6 +181,10 @@
           </div>
           <input type="hidden" class="form-control" id="id_pago" name="id">
           <input type="hidden" class="form-control" id="prestamos_id" name="prestamos_id">
+          <input type="hidden" class="form-control" id="num_cuota" name="num_cuota">
+          <input type="hidden" class="form-control" id="numero" name="numero">
+          <input type="hidden" class="form-control" id="saldo" name="saldo">
+          <input type="hidden" class="form-control" id="totalPagoPMO" name="totalPagoPMO">
           <div class="mb-3 row">
             <label for="montoPagar" class="col-sm-3 col-form-label">Monto Pagar :</label>
             <div class="col-sm-9">

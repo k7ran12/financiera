@@ -59,7 +59,7 @@ class Prestamo extends Model
      *
      * @var array
      */
-    protected $fillable = ['capital','tea','num_cuota','tipo_moneda','saldo','fecha_registro','fecha_inicio','monto_x_cuota','form_pago','total_interes','capital_total','clausula','estado_prestamo','numero_operacion','clientes_id','users_id'];
+    protected $fillable = ['capital','tea','num_cuota','tipo_moneda','saldo','fecha_registro','fecha_inicio','monto_x_cuota','form_pago','total_interes','capital_total','clausula','estado_prestamo','numero_operacion','totalPagoPMO','clientes_id','users_id'];
 
 
     /**

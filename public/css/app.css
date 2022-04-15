@@ -11325,6 +11325,18 @@ legend.scheduler-border {
   width: 90px;
 }
 
+.pendiente {
+  text-transform: uppercase;
+  font-size: 1.6em;
+  color: red;
+}
+
+.finalizado {
+  text-transform: uppercase;
+  font-size: 1.6em;
+  color: green;
+}
+
 @media only screen and (max-width: 575px) {
   .texto_grande {
     font-size: 1.2em;

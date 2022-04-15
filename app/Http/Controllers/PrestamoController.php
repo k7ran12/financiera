@@ -59,7 +59,7 @@ class PrestamoController extends Controller
         $id = Prestamo::latest()->first()->id;
         $this->crearCuotas($request, $id);
         return redirect()->route('prestamos.show',$id)
-        ->with('success', 'Prestamo created successfully.');
+        ->with('success', 'Prestamo creado satisfactoriamente.');
     }
 
     /**
@@ -154,6 +154,7 @@ class PrestamoController extends Controller
         $request['users_id'] = auth()->id();
         $request['estado_prestamo'] = 'pendiente';
         $request['saldo'] = $request['capital_total'];
+        $request['totalPagoPMO'] = 0;
         return $request;
     }
     public function obtenerCorrelacion(){
@@ -175,8 +176,25 @@ class PrestamoController extends Controller
             ]);
         }
     }
-    public function realizarPagoCuota(Request $request){               
-        
+    public function realizarPagoCuota(Request $request){ 
+        $saldoRestante = $request['saldo'] - $request['recepcion_pago'];
+        $totalPagoPMO = $request['totalPagoPMO'] + $request['recepcion_total_pago'];        
+        if($request['num_cuota'] == $request['numero']){            
+            Prestamo::where('id', $request['prestamos_id'])
+            ->update([
+                'estado_prestamo' => 'finalizado',
+                'saldo' => $saldoRestante,              
+                'totalPagoPMO' => $totalPagoPMO,
+            ]);
+        }
+        else{
+            Prestamo::where('id', $request['prestamos_id'])
+            ->update([
+                'saldo' => $saldoRestante,
+                'totalPagoPMO' => $totalPagoPMO,              
+            ]);
+        }
+
         Cuota::where('id', $request['id'])
         ->update([
             'estado' => 'pagado',

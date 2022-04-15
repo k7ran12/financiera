@@ -164,18 +164,23 @@ $(document).ready(function(){
         
     }
 
-    window.modalPagar = function($cuota){
-        pagarCuota($cuota);
+    window.modalPagar = function(cuota,num_cuota,saldo,totalPagoPMO){
+        pagarCuota(cuota, num_cuota,saldo, totalPagoPMO);
     }
 
-    function pagarCuota($cuota){  
+    function pagarCuota(cuota, num_cuota, saldo, totalPagoPMO){  
+        console.log(num_cuota, saldo, totalPagoPMO)
         $("#mora").val("");
         $("#otros").val("");  
-        $("#id_pago").val($cuota['id']);
-        $("#prestamos_id").val($cuota['prestamos_id']);
-        $('#montoPagar').val($cuota['total'].toFixed(2));
-        $("#total").val($cuota['total'].toFixed(2))
-        $("#titulo_pagar").html("<center><strong><h4 style='color:red'>Monto a pagar : "+$cuota['total'].toFixed(2)+"</h4></strong></center>")        
+        $("#id_pago").val(cuota['id']);
+        $("#num_cuota").val(num_cuota);
+        $("#saldo").val(saldo);
+        $("#totalPagoPMO").val(totalPagoPMO);
+        $("#numero").val(cuota['numero']);
+        $("#prestamos_id").val(cuota['prestamos_id']);
+        $('#montoPagar').val(cuota['total'].toFixed(2));
+        $("#total").val(cuota['total'].toFixed(2))
+        $("#titulo_pagar").html("<center><strong><h4 style='color:red'>Monto a pagar : "+cuota['total'].toFixed(2)+"</h4></strong></center>")        
     }
     
     
