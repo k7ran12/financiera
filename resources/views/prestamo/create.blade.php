@@ -23,12 +23,7 @@
                             @csrf
 
                             @include('prestamo.form')
-
-                        <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-</ul>
+                        
                         </form>
                     </div>
                 </div>

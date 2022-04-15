@@ -18,9 +18,9 @@ return new class extends Migration
             $table->engine="InnoDB";
             $table->id();
             $table->char("codigo", 4);
-        });
+            $table->integer("correlacion");
+        });      
         
-        DB::statement('ALTER TABLE numeraciones ADD correlacion INT(6) UNSIGNED ZEROFILL NOT NULL');
 
     }
 

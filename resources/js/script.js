@@ -34,6 +34,22 @@ $(document).ready(function(){
         
     });
 
+    $("#btnBuscarXNumOperacion").click(function(){
+        var datos = $("#formBuscarXNumOperacion").serialize();
+        buscarXNOperacion(datos);
+    })
+
+    function buscarXNOperacion(datos){               
+        $.ajax({
+            method: "GET",
+            url: "buscarXNumOperacion",
+            data: datos
+          })
+            .done(function( msg ) {
+              alert( "Data Saved: " + msg );
+            });
+    }    
+
     function buscarCliente(urlBuscar){
         $(".remove").remove();        
         var datos = $("#form_buscar_cliente").serialize();
@@ -62,15 +78,13 @@ $(document).ready(function(){
                     });
                     var div_cronograma = $("#div_cronograma").detach();
                     var div_container_simulador_cuotas = $("#div_container_simulador_cuotas");
-                    div_container_simulador_cuotas.append(div_cronograma);
-                    console.log("Holaa");
+                    div_container_simulador_cuotas.append(div_cronograma);                    
                 }
                 else{
                     var div_cronograma = $("#div_cronograma").detach();
                     $(".remove").remove();
                     var div_row_izquierda = $("#div_row_izquierda");
-                    div_row_izquierda.append(div_cronograma);
-                    console.log("Holaa");
+                    div_row_izquierda.append(div_cronograma);                    
                 }
         });
         
@@ -127,6 +141,42 @@ $(document).ready(function(){
     $('select').on('change', function() {
         $("#agregar_tabla").html("");
     });
+    $( "#mora" ).keyup(function() {
+        calcularPagoCuota();               
+    });
+    $( "#otros" ).keyup(function() {
+        calcularPagoCuota();               
+    });
+
+    function calcularPagoCuota(){
+        let mora = $("#mora").val();
+        let otros = $("#otros").val();
+
+        if(mora == ""){
+            mora = 0;
+        }
+        if(otros == ""){
+            otros = 0;
+        }        
+        let montoPagar = $("#montoPagar").val();        
+        let sumarCampos = parseFloat(mora) + parseFloat(otros) + parseFloat(montoPagar);
+        $("#total").val(sumarCampos.toFixed(2))        
+        
+    }
+
+    window.modalPagar = function($cuota){
+        pagarCuota($cuota);
+    }
+
+    function pagarCuota($cuota){  
+        $("#mora").val("");
+        $("#otros").val("");  
+        $("#id_pago").val($cuota['id']);
+        $("#prestamos_id").val($cuota['prestamos_id']);
+        $('#montoPagar').val($cuota['total'].toFixed(2));
+        $("#total").val($cuota['total'].toFixed(2))
+        $("#titulo_pagar").html("<center><strong><h4 style='color:red'>Monto a pagar : "+$cuota['total'].toFixed(2)+"</h4></strong></center>")        
+    }
     
     
     window.Menu = function (code) {
@@ -158,8 +208,7 @@ $(document).ready(function(){
     let btnCronograma = $("#cronograma");
 
     btnCronograma.click(function(){
-        generarCuotas();
-        console.log("sdasd");
+        generarCuotas();        
     })
     
     function generarCuotas(){            
@@ -188,8 +237,8 @@ $(document).ready(function(){
             cuota_pagar_sin_interes = monto / num_cuotas;        
     
             total_interes = monto * tea/100;
-            total_pago = parseInt(total_interes) + parseInt(monto);
-            cuota_pagar_total = total_pago / num_cuotas;        
+            total_pago = parseFloat(total_interes) + parseFloat(monto);
+            cuota_pagar_total = total_pago / num_cuotas;       
     
             interes = parseFloat(cuota_pagar_total) - parseFloat(cuota_pagar_sin_interes);
     
@@ -210,13 +259,11 @@ $(document).ready(function(){
             table += '<input type="hidden" value="'+total_pago+'" name="capital_total">'
             table += '<button type="submit" class="btn btn-primary">Enviar</button>';            
             
-            div_table.html(table);
-            //let fecha_resultado;
+            div_table.html(table);            
             
         }
         }else
-        {
-            console.log("Hola");
+        {            
             var agregar_tabla = document.getElementById("agregar_tabla");
             agregar_tabla.innerHTML = '<div class="alert alert-danger d-flex align-items-center" role="alert"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg><div>Rellene el formulario</div></div>'
         }

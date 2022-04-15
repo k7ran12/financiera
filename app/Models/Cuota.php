@@ -40,7 +40,7 @@ class Cuota extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha_limite','monto','numero','estado','prestamos_id','interes','total'];
+    protected $fillable = ['fecha_limite','monto','numero','estado','prestamos_id','interes','total', 'recepcion_pago', 'mora', 'otros', 'recepcion_total_pago'];
 
 
     /**

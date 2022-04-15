@@ -64,13 +64,13 @@
                                     {{ Form::label('N° Cuotas', null ,array('class' =>"col-sm-3 col-form-label" )) }}                                       
                                     <div class="col-sm-3">                                        
                                         {{ Form::text('num_cuota', $prestamo->num_cuota, ['class' => 'form-control' . ($errors->has('num_cuota')
-                                        ? ' is-invalid' : ''), 'placeholder' => 'num_cuota', 'id'=>'num_cuotas']) }}
+                                        ? ' is-invalid' : ''), 'placeholder' => 'N° cuotas', 'id'=>'num_cuotas']) }}
                                         {!! $errors->first('num_cuota', '<div class="invalid-feedback">:message</div>') !!}
                                     </div> 
-                                     {{ Form::label('tea', null ,array('class' =>"col-sm-2 col-form-label" )) }}                                       
+                                     {{ Form::label('TEA', null ,array('class' =>"col-sm-2 col-form-label" )) }}                                       
                                     <div class="col-sm-4">                                        
                                         {{ Form::text('tea', $prestamo->tea, ['class' => 'form-control' . ($errors->has('tea')
-                                        ? ' is-invalid' : ''), 'placeholder' => 'tea', 'id'=>'tea_select']) }}
+                                        ? ' is-invalid' : ''), 'placeholder' => 'TEA', 'id'=>'tea_select']) }}
                                         {!! $errors->first('tea', '<div class="invalid-feedback">:message</div>') !!}
                                     </div>  
 
@@ -78,7 +78,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Forma de pago</label>
                                     <div class="col-sm-9">
-                                        {{ Form::select('form_pago', array('diario' => 'Diario', 'quincenal' => 'Quincenal', 'semanal' => 'Semanal', 'mensual' => 'Mensual'), ($prestamo->form_pago != "")? $prestamo->form_pago : 'mensual', array('class' => 'form-control', 'id' => 'form_pago_select')  ) }}
+                                        {{ Form::select('form_pago', array('diario' => 'Diario', 'quincenal' => 'Quincenal', 'semanal' => 'Semanal', 'mensual' => 'Mensual'), ($prestamo->form_pago != "")? $prestamo->form_pago : 'mensual', array('class' => 'form-select', 'id' => 'form_pago_select')  ) }}
                                     </div>
                                 </div>                                
                                 <div class="mb-3 row">                                    

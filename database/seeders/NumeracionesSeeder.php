@@ -17,7 +17,7 @@ class NumeracionesSeeder extends Seeder
     {        
         DB::table('numeraciones')->insert([
             'codigo' => 'PTM',
-            'correlacion' => 1
+            'correlacion' => 0
         ]);
     }
 }

@@ -19,9 +19,13 @@ return new class extends Migration
             $table->date('fecha_limite');
             $table->float("monto",8,2);
             $table->integer("numero");
-            $table->boolean("estado");
+            $table->string("estado", 12);
             $table->float("interes",8,2);
             $table->float("total",8,2);
+            $table->float("recepcion_pago", 8,2)->nullable();
+            $table->float("mora", 8,2)->nullable();
+            $table->float("otros", 8,2)->nullable();
+            $table->float("recepcion_total_pago", 8,2)->nullable();
             $table->timestamps();    
             $table->foreignId('prestamos_id')->constrained()->onDelete('cascade');                    
         });

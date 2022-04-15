@@ -22,12 +22,7 @@
 
                             @include('prestamo.form')
 
-                        </form>
-                        <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-</ul>
+                        </form>                       
                     </div>
                 </div>
             </div>

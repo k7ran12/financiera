@@ -26,8 +26,8 @@ return new class extends Migration
             $table->float("total_interes", 8, 2);
             $table->float("capital_total", 8 ,2);
             $table->text("clausula")->nullable();
-            $table->boolean("estado_prestamo");
-            $table->string("numero_operacion");
+            $table->string("estado_prestamo", 12);
+            $table->string("numero_operacion",9);
             $table->string("form_pago", 20);
             $table->float("saldo", 8,2);   
             $table->char('clientes_id', 15);        
