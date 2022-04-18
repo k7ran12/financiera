@@ -33,21 +33,22 @@
                         <div class="row m-2">
                             <div class="col-md-7"></div>
                             <div class="col-md-5">
-                                <form class="row g-3" name="formBuscarXNumOperacion" id="formBuscarXNumOperacion">
+                                <form class="row g-3" name="formBuscarXNumOperacion" id="formBuscarXNumOperacion" method="GET" action="{{ route('prestamos.buscarXNumOperacion') }}">
+                                    @csrf
                                     <div class="mb-3 row">
-                                        <label for="buscar" class="col-sm-3 col-form-label">Buscar</label>
-                                        <div class="col-sm-5">
+                                        <label for="buscar" class="col-sm-4 col-form-label">Num Operacion</label>
+                                        <div class="col-sm-4">
                                           <input type="text" class="form-control" id="buscarOperacion" name="buscarOperacion">
                                         </div>
                                         <div class="col-sm-4">
-                                            <button id="btnBuscarXNumOperacion" type="button" class="btn btn-primary">Buscar</button>                                            
+                                            <button type="submit" class="btn btn-primary">Buscar</button>                                            
                                         </div>
                                       </div>
                                   </form>
                             </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table lms_table_active3">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>N°</th>                                                
@@ -62,9 +63,9 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tbody_buscar">
                                             @foreach ($prestamos as $prestamo)
-                                                <tr>
+                                                <tr class="remover_prestamos">
                                                     <td>{{ ++$i }}</td>
                                                     
                                                     <td>{{ "S/.". number_format($prestamo->capital, 2, '.', ''); }}</td>
@@ -73,7 +74,7 @@
                                                     <td>{{ $prestamo->fecha_registro }}</td>                                                                                                       
                                                     <td>{{ ucwords($prestamo->estado_prestamo) }}</td>
                                                     <td>{{ $prestamo->numero_operacion }}</td>
-                                                    <form action="{{ route('prestamos.destroy',$prestamo->id) }}" method="POST"></form>
+                                                    <form action="{{ route('prestamos.destroy',$prestamo->id) }}" method="POST">
                                                     <td><a class="btn btn-sm btn-primary " href="{{ route('prestamos.show',$prestamo->id) }}"><i class="fa fa-fw fa-eye"></i></a></td>
                                                     <td><a class="btn btn-sm btn-success" href="{{ route('prestamos.edit',$prestamo->id) }}"><i class="fa fa-fw fa-edit"></i></a></td>        
                                                     @csrf
@@ -89,7 +90,12 @@
                         </div>
                     </div>
                 </div>
-                {!! $prestamos->links() !!}
+                <nav aria-label="">
+                <ul class="pagination">
+                    {!! $prestamos->links() !!}
+                </ul>
+                </nav>
+                
             </div>
         </div>
     </div>

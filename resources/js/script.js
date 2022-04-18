@@ -32,23 +32,8 @@ $(document).ready(function(){
             buscarCliente(urlBuscar);
         }       
         
-    });
+    });  
 
-    $("#btnBuscarXNumOperacion").click(function(){
-        var datos = $("#formBuscarXNumOperacion").serialize();
-        buscarXNOperacion(datos);
-    })
-
-    function buscarXNOperacion(datos){               
-        $.ajax({
-            method: "GET",
-            url: "buscarXNumOperacion",
-            data: datos
-          })
-            .done(function( msg ) {
-              alert( "Data Saved: " + msg );
-            });
-    }    
 
     function buscarCliente(urlBuscar){
         $(".remove").remove();        

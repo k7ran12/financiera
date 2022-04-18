@@ -24,7 +24,7 @@ class PrestamoController extends Controller
     //private $cliente;
     public function index()
     {
-        $prestamos = Prestamo::paginate();        
+        $prestamos = Prestamo::paginate(10);        
 
         return view('prestamo.index', compact('prestamos'))
             ->with('i', (request()->input('page', 1) - 1) * $prestamos->perPage());
@@ -53,14 +53,14 @@ class PrestamoController extends Controller
         $request = $this->completarDatos($request);
         request()->validate(Prestamo::$rules);
         $correlacion = $this->obtenerCorrelacion();
-        $correlacionFormateada = str_pad($correlacion, 8, "0", STR_PAD_LEFT);        
+        $correlacionFormateada = $this->completarCeros($correlacion);                
         $request['numero_operacion'] = $correlacionFormateada;
         $prestamos = Prestamo::create($request->all());
         $id = Prestamo::latest()->first()->id;
         $this->crearCuotas($request, $id);
         return redirect()->route('prestamos.show',$id)
         ->with('success', 'Prestamo creado satisfactoriamente.');
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -140,10 +140,16 @@ class PrestamoController extends Controller
         return $prestamos;
     }
     public function buscarXNumOperacion(Request $request)
-    {        
-        $idCliente = $request['clientes_id'];
-        $prestamos = Prestamo::where('clientes_id', $idCliente)->get();
-        return $prestamos;
+    {           
+        if($request['buscarOperacion'] != ""){
+            $num_operacion = $this->completarCeros($request['buscarOperacion']);
+            $prestamos = Prestamo::where('numero_operacion', $num_operacion)->paginate(10);        
+        }
+        else{
+            $prestamos = Prestamo::paginate(10);
+        }
+        return view('prestamo.index', compact('prestamos'))
+            ->with('i', (request()->input('page', 1) - 1) * $prestamos->perPage());
     }
     
     public function completarDatos($request){
@@ -175,6 +181,9 @@ class PrestamoController extends Controller
                 'prestamos_id' => $id_prestamo,
             ]);
         }
+    }
+    public function completarCeros($dato){
+        return str_pad($dato, 8, "0", STR_PAD_LEFT);
     }
     public function realizarPagoCuota(Request $request){ 
         $saldoRestante = $request['saldo'] - $request['recepcion_pago'];
@@ -209,4 +218,5 @@ class PrestamoController extends Controller
         ->with('success', 'El cobro se realizo con exito');
     
     }
+    
 }

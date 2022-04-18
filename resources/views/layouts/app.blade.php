@@ -22,12 +22,14 @@
 </head>
 
 <body class="crm_body_bg">
+    @guest                
+    @else
     <nav class="sidebar dark_sidebar">
         <div class="logo d-flex justify-content-between">
-            <a class="large_logo" href="index-2.html">
+            <a class="large_logo" href="{{ route('prestamos.index') }}">
                 <img alt="" src="{{asset('img/logo_white.png')}}"/>
             </a>
-            <a class="small_logo" href="index-2.html">
+            <a class="small_logo" href="{{ route('prestamos.index') }}">
                 <img alt="" src="{{asset('img/mini_logo.png')}}"/>
             </a>
             <div class="sidebar_close_icon d-lg-none">
@@ -37,70 +39,40 @@
         </div>
         <ul id="sidebar_menu">
             <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
+                <a aria-expanded="false" class="has-arrow {{ Request::is('prestamos') ? 'active' : '' }}" href="{{ route('prestamos.index') }}">
                     <div class="nav_icon_small">
                         <img alt="" src="{{asset('img/menu-icon/1.svg')}}">
                         </img>
                     </div>
                     <div class="nav_title">
                         <span>
-                            Dashboard
+                            Inicio
                         </span>
                     </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="index_2.html">
-                            Default
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index_3.html">
-                            Light Sidebar
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index-2.html">
-                            Dark Sidebar
-                        </a>
-                    </li>
-                </ul>
+                </a>               
             </li>
             <li class="">
-                <a aria-expanded="false" href="crypto_wallet.html">
+                <a class="{{ Request::is('prestamos/create') ? 'active' : '' }}" aria-expanded="false" href="{{ route('prestamos.create') }}">
                     <div class="nav_icon_small">
                         <img alt="" src="{{asset('img/menu-icon/2.svg')}}">
                         </img>
                     </div>
                     <div class="nav_title">
                         <span>
-                            Crypto Wallet
+                            Realizar Prestamos
                         </span>
                     </div>
                 </a>
             </li>
             <li class="">
-                <a aria-expanded="false" href="buy_sell.html">
+                <a class="{{ Request::is('clientes') ? 'active' : '' }}" aria-expanded="false" href="{{ route('clientes.index') }}">
                     <div class="nav_icon_small">
                         <img alt="" src="{{asset('img/menu-icon/3.svg')}}">
                         </img>
                     </div>
                     <div class="nav_title">
                         <span>
-                            Buy & Sell
-                        </span>
-                    </div>
-                </a>
-            </li>
-            <li class="">
-                <a aria-expanded="false" href="Trader_Profile.html">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/4.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Trader Profile
+                            Clientes
                         </span>
                     </div>
                 </a>
@@ -113,559 +85,30 @@
                     </div>
                     <div class="nav_title">
                         <span>
-                            Crypto Stats
+                            Reportes
                         </span>
                     </div>
                 </a>
-            </li>
+            </li> 
             <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
+                <a aria-expanded="false" href="Trader_Profile.html">
                     <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/6.svg')}}">
+                        <img alt="" src="{{asset('img/menu-icon/4.svg')}}">
                         </img>
                     </div>
                     <div class="nav_title">
                         <span>
-                            Transactions
+                            Configuracion
                         </span>
                     </div>
                 </a>
-                <ul>
-                    <li>
-                        <a href="Request.html">
-                            Request
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tan_cancel.html">
-                            Cancel
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Refound.html">
-                            Refound
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Payment_details.html">
-                            Payment details
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/7.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Tickers
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="ticker_dark.html">
-                            Ticker Dark
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Ticker_Light.html">
-                            Ticker Light
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/8.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Apps
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="editor.html">
-                            Editor
-                        </a>
-                    </li>
-                    <li>
-                        <a href="invoice.html">
-                            Invoice
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Builder.html">
-                            Builder
-                        </a>
-                    </li>
-                    <li>
-                        <a href="calender.html">
-                            Calander
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Board.html">
-                            Board
-                        </a>
-                    </li>
-                    <li>
-                        <a href="basic_card.html">
-                            Basic Card
-                        </a>
-                    </li>
-                    <li>
-                        <a href="theme_card.html">
-                            Theme Card
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dargable_card.html">
-                            Draggable Card
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/Pages.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Pages
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="role_permissions.html">
-                            Role & Permissions
-                        </a>
-                    </li>
-                    <li>
-                        <a href="faq.html">
-                            FAQ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="resister.html">
-                            Register
-                        </a>
-                    </li>
-                    <li>
-                        <a href="error_400.html">
-                            Error 404
-                        </a>
-                    </li>
-                    <li>
-                        <a href="error_500.html">
-                            Error 500
-                        </a>
-                    </li>
-                    <li>
-                        <a href="forgot_pass.html">
-                            Forgot Password
-                        </a>
-                    </li>
-                    <li>
-                        <a href="gallery.html">
-                            Gallery
-                        </a>
-                    </li>
-                    <li>
-                        <a href="module_setting.html">
-                            Module Setting
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Products.html">
-                            Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Product_Details.html">
-                            Product Details
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Cart.html">
-                            Cart
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Checkout.html">
-                            Checkout
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/General.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            General
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="Minimized_Aside.html">
-                            Minimized Aside
-                        </a>
-                    </li>
-                    <li>
-                        <a href="empty_page.html">
-                            Empty page
-                        </a>
-                    </li>
-                    <li>
-                        <a href="fixed_footer.html">
-                            Fixed Footer
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/Mail_Box.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Mail Box
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="mail_box.html">
-                            Mail Box
-                        </a>
-                    </li>
-                    <li>
-                        <a href="compose.html">
-                            Compose
-                        </a>
-                    </li>
-                    <li>
-                        <a href="important_mail.html">
-                            Important Mail
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mail_trash.html">
-                            Mail Trash
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            Chat
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/icon.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Icons
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="Fontawesome_Icon.html">
-                            Fontawesome Icon
-                        </a>
-                    </li>
-                    <li>
-                        <a href="themefy_icon.html">
-                            themefy icon
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/18.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            UI Elements
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="colors.html">
-                            colors
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Alerts.html">
-                            Alerts
-                        </a>
-                    </li>
-                    <li>
-                        <a href="buttons.html">
-                            Buttons
-                        </a>
-                    </li>
-                    <li>
-                        <a href="modal.html">
-                            modal
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dropdown.html">
-                            Droopdowns
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Badges.html">
-                            Badges
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Loading_Indicators.html">
-                            Loading Indicators
-                        </a>
-                    </li>
-                    <li>
-                        <a href="color_plate.html">
-                            Color Plate
-                        </a>
-                    </li>
-                    <li>
-                        <a href="typography.html">
-                            Typography
-                        </a>
-                    </li>
-                    <li>
-                        <a href="datepicker.html">
-                            Date Picker
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wow_animation.html">
-                            Animate
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Scroll_Reveal.html">
-                            Scroll Reveal
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tilt.html">
-                            Tilt Animation
-                        </a>
-                    </li>
-                    <li>
-                        <a href="navs.html">
-                            Navs
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/forms.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            forms
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="Basic_Elements.html">
-                            Basic Elements
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Groups.html">
-                            Groups
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Max_Length.html">
-                            Max Length
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Layouts.html">
-                            Layouts
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/14.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Widgets
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="accordion.html">
-                            Accordions
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Scrollable.html">
-                            Scrollable
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notification.html">
-                            Notifications
-                        </a>
-                    </li>
-                    <li>
-                        <a href="carousel.html">
-                            Carousel
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Pagination.html">
-                            Pagination
-                        </a>
-                    </li>
-                    <li>
-                        <a href="profilebox.html">
-                            Profile Box
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/17.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Table
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="data_table.html">
-                            Data Tables
-                        </a>
-                    </li>
-                    <li>
-                        <a href="bootstrap_table.html">
-                            Bootstrap
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/16.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Charts
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="chartjs.html">
-                            ChartJS
-                        </a>
-                    </li>
-                    <li>
-                        <a href="apex_chart.html">
-                            Apex Charts
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chart_sparkline.html">
-                            Chart sparkline
-                        </a>
-                    </li>
-                    <li>
-                        <a href="am_chart.html">
-                            am-charts
-                        </a>
-                    </li>
-                    <li>
-                        <a href="nvd3_charts.html">
-                            nvd3 charts.
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="">
-                <a aria-expanded="false" class="has-arrow" href="#">
-                    <div class="nav_icon_small">
-                        <img alt="" src="{{asset('img/menu-icon/map.svg')}}">
-                        </img>
-                    </div>
-                    <div class="nav_title">
-                        <span>
-                            Maps
-                        </span>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="mapjs.html">
-                            Maps JS
-                        </a>
-                    </li>
-                    <li>
-                        <a href="vector_map.html">
-                            Vector Maps
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            </li>                       
         </ul>
     </nav>
+    @endguest    
     <section class="main_content dashboard_part large_header_bg">
+        @guest            
+        @else
         <div class="container-fluid no-gutters">
             <div class="row">
                 <div class="col-lg-12 p-0 ">
@@ -678,139 +121,7 @@
                             <img alt="" src="{{asset('img/line_img.png')}}">
                             </img>
                         </div>
-                        <div class="header_right d-flex justify-content-between align-items-center">
-                            <div class="header_notification_warp d-flex align-items-center">
-                                <li>
-                                    <a class="CHATBOX_open nav-link-notify" href="#">
-                                        <img alt="" src="{{asset('img/icon/msg.svg')}}">
-                                        </img>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="bell_notification_clicker nav-link-notify" href="#">
-                                        <img alt="" src="{{asset('img/icon/bell.svg')}}">
-                                        </img>
-                                    </a>
-                                    <div class="Menu_NOtification_Wrap">
-                                        <div class="notification_Header">
-                                            <h4>
-                                                Notifications
-                                            </h4>
-                                        </div>
-                                        <div class="Notification_body">
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/2.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            Cool Marketing
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/4.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            Awesome packages
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/3.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            what a packages
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/2.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            Cool Marketing
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/4.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            Awesome packages
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#">
-                                                        <img alt="" src="{{asset('img/staf/3.png" ')}}/>
-                                                    </a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>
-                                                            what a packages
-                                                        </h5>
-                                                    </a>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="nofity_footer">
-                                            <div class="submit_button text-center pt_20">
-                                                <a class="btn_1 green" href="#">
-                                                    See More
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </div>
+                        <div class="header_right d-flex justify-content-between align-items-center">                            
                             <div class="profile_info d-flex align-items-center">
                                 <div class="profile_thumb mr_20">
                                     <img alt="#" src="{{asset('img/transfer/4.png')}}">
@@ -818,31 +129,30 @@
                                 </div>
                                 <div class="author_name">
                                     <h4 class="f_s_15 f_w_500 mb-0">
-                                        Jiue Anderson
+                                        {{ Auth::user()->name }}
                                     </h4>
-                                    <p class="f_s_12 f_w_400">
-                                        Manager
+                                    <p class="f_s_12 f_w_400">                                        
                                     </p>
                                 </div>
                                 <div class="profile_info_iner">
                                     <div class="profile_author_name">
                                         <p>
-                                            Manager
+                                            
                                         </p>
                                         <h5>
-                                            Jiue Anderson
+                                            {{ Auth::user()->name }}
                                         </h5>
                                     </div>
                                     <div class="profile_info_details">
-                                        <a href="#">
-                                            My Profile
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
                                         </a>
-                                        <a href="#">
-                                            Settings
-                                        </a>
-                                        <a href="#">
-                                            Log Out
-                                        </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                     </div>
                                 </div>
                             </div>
@@ -851,6 +161,7 @@
                 </div>
             </div>
         </div>
+        @endguest
         @yield('content')
         
     </section>
