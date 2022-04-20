@@ -78,7 +78,20 @@
                 </a>
             </li>
             <li class="">
-                <a aria-expanded="false" href="crypto_stats.html">
+                <a class="{{ Request::is('usuarios') ? 'active' : '' }}" aria-expanded="false" href="{{ route('usuarios.index') }}">
+                    <div class="nav_icon_small">
+                        <img alt="" src="{{asset('img/menu-icon/3.svg')}}">
+                        </img>
+                    </div>
+                    <div class="nav_title">
+                        <span>
+                            Usuarios
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li class="">
+                <a class="{{ Request::is('reportes') ? 'active' : '' }}" aria-expanded="false" href="{{ route('reportes.index') }}">
                     <div class="nav_icon_small">
                         <img alt="" src="{{asset('img/menu-icon/5.svg')}}">
                         </img>
@@ -91,7 +104,7 @@
                 </a>
             </li> 
             <li class="">
-                <a aria-expanded="false" href="Trader_Profile.html">
+                <a class="{{ Request::is('empresas') ? 'active' : '' }}" aria-expanded="false" href="{{ route('empresas.index') }}">
                     <div class="nav_icon_small">
                         <img alt="" src="{{asset('img/menu-icon/4.svg')}}">
                         </img>
