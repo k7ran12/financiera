@@ -54,10 +54,10 @@ class PrestamoController extends Controller
     public function store(Request $request)
     {
         $request = $this->completarDatos($request);
-        request()->validate(Prestamo::$rules);
         $correlacion = $this->obtenerCorrelacion();
         $correlacionFormateada = $this->completarCeros($correlacion);                
         $request['numero_operacion'] = $correlacionFormateada;
+        request()->validate(Prestamo::$rules);
         $prestamos = Prestamo::create($request->all());
         $id = Prestamo::latest()->first()->id;
         $this->crearCuotas($request, $id);
@@ -105,7 +105,8 @@ class PrestamoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Prestamo $prestamo)
-    {        
+    {       
+        $request['numero_operacion'] = $prestamo['numero_operacion'];
         $request = $this->completarDatos($request);
         request()->validate(Prestamo::$rules);        
         Cuota::where('prestamos_id', $prestamo->id)->delete();
@@ -157,8 +158,7 @@ class PrestamoController extends Controller
     
     public function completarDatos($request){
         $request['tipo_moneda'] = "PEN";
-        $request['monto_x_cuota'] = 0;
-        $request['numero_operacion'] = 1;        
+        $request['monto_x_cuota'] = 0;    
         $request['fecha_registro'] = date("Y-m-d H:i:s");
         $request['users_id'] = auth()->id();
         $request['estado_prestamo'] = 'pendiente';
