@@ -20,15 +20,15 @@ Route::get('/prestamos/buscarXNumOperacion', [PrestamoController::class, 'buscar
 
 Route::get('/prestamos/cuotasCliente', [PrestamoController::class, 'cuotasCliente'])->name('cuotas.cuotasCliente')->middleware('auth');
 
-Route::resource('prestamos', App\Http\Controllers\PrestamoController::class)->middleware('auth');
+Route::resource('prestamos', App\Http\Controllers\PrestamoController::class);
 
 Route::resource('cuotas', App\Http\Controllers\CuotaController::class)->middleware('auth');
 
-Route::resource('usuarios', App\Http\Controllers\UsuariosController::class)->middleware('auth');
+Route::resource('usuarios', App\Http\Controllers\UsuariosController::class)->middleware('can:usuarios');
 
-Route::resource('reportes', App\Http\Controllers\ReportesController::class)->middleware('auth');
+Route::resource('reportes', App\Http\Controllers\ReportesController::class)->middleware('can:reportes');
 
-Route::resource('empresas', App\Http\Controllers\EmpresaController::class)->middleware('auth');
+Route::resource('empresas', App\Http\Controllers\EmpresaController::class)->middleware('can:empresa');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 

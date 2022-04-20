@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\DB;
  */
 class PrestamoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //private $cliente;
+    
+    public function __construct()
+    {
+        $this->middleware('can:prestamos.index')->only('index');
+        $this->middleware('can:prestamos.create')->only('create','store');
+        $this->middleware('can:prestamos.delete')->only('delete');
+        $this->middleware('can:prestamos.update')->only('edit','update');
+    }
+
     public function index()
     {
         $prestamos = Prestamo::paginate(10);        

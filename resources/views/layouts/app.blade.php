@@ -77,6 +77,7 @@
                     </div>
                 </a>
             </li>
+            @can('usuarios')
             <li class="">
                 <a class="{{ Request::is('usuarios') ? 'active' : '' }}" aria-expanded="false" href="{{ route('usuarios.index') }}">
                     <div class="nav_icon_small">
@@ -90,6 +91,8 @@
                     </div>
                 </a>
             </li>
+            @endcan
+            @can('reportes')
             <li class="">
                 <a class="{{ Request::is('reportes') ? 'active' : '' }}" aria-expanded="false" href="{{ route('reportes.index') }}">
                     <div class="nav_icon_small">
@@ -102,7 +105,9 @@
                         </span>
                     </div>
                 </a>
-            </li> 
+            </li>
+            @endcan 
+            @can('empresa')
             <li class="">
                 <a class="{{ Request::is('empresas') ? 'active' : '' }}" aria-expanded="false" href="{{ route('empresas.index') }}">
                     <div class="nav_icon_small">
@@ -115,7 +120,8 @@
                         </span>
                     </div>
                 </a>
-            </li>                       
+            </li>      
+            @endcan                 
         </ul>
     </nav>
     @endguest    
